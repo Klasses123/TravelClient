@@ -1,0 +1,11 @@
+<nav>
+  <ul>
+    <li 
+    ngClass="jj"
+      *ngFor="let r of references"
+      (click)="r.onClick()"
+    >
+      {{r.title}}
+    </li>
+  </ul>
+</nav>
