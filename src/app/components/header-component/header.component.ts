@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   constructor() { }
 
+  //TODO add some here
   references: any[] = [{
       title: 'Главная',
       onClick() {
