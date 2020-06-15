@@ -3,7 +3,7 @@ import User from '../../models/user';
 import { HttpClient } from '@angular/common/http';
 import { BaseHttpService } from './base-http-service';
 import { Observable } from 'rxjs';
-import SignInResult from 'src/app/models/request-result-models/sign-in-result';
+import SignInResult from 'src/app/models/response-models/sign-in-result';
 import { ConfigurationService } from '../configuration-service';
 
 export interface IUserApi {
