@@ -29,6 +29,7 @@ export class AuthService {
     return localStorage.getItem(this.nameofTokenKey);
   }
 
+  
   //TODO: add refresh token
   /*public resetToken(tokenResponse: TokenResponse): void {
     localStorage.setItem(this.nameofRefreshToken, tokenResponse.refreshToken);
