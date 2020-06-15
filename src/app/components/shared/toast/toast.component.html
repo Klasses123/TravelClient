@@ -1,0 +1,22 @@
+<div
+  class="toast block"
+  [ngStyle]="{
+    color: data.color ? data.color : 'white',
+    backgroundColor: data.backgroundColor ? data.backgroundColor : '#28a745'
+  }"
+  [@fadeAnimation]="{
+    value: animationState,
+    params: {
+      fadeIn: data.fadeIn ? data.fadeIn : configure.appearanceToastTransition,
+      fadeOut: data.fadeOut ? data.fadeOut : configure.disappearToastTransition
+    }
+  }"
+  (@fadeAnimation.done)="onFadeFinished($event)"
+>
+  <span [ngClass]="data.closable ? 'toast-text' : ' '">{{
+    data.text ? data.text : "Упс!"
+  }}</span>
+  <span *ngIf="data.closable" class="close-block">
+    <div (click)="close()" class="x-mark">&#10005;</div>
+  </span>
+</div>
