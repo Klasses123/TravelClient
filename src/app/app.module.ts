@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header-component/header.component';
 import { ImgListComponent } from './components/img-list-component/img-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login-component/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ImgListComponent
+    ImgListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

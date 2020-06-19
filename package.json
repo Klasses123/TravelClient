@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "@aspnet/signalr": "^1.1.4",
     "@types/three": "^0.103.2",
     "compass-mixins": "^0.12.10",
     "gsap": "^3.2.6",

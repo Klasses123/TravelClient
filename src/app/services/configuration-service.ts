@@ -9,6 +9,6 @@ export class ConfigurationService {
   readonly disappearToastTransition: number = 1000;
   readonly appearanceToastTransition: number = 300;
 
-  readonly webApiUrl: string = 'https://localhost:44315/api/';
+  readonly webApiUrl: string = 'https://localhost:44315/api';
 
 }
