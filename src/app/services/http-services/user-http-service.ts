@@ -4,15 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { BaseHttpService } from './base-http-service';
 import { Observable } from 'rxjs';
 import { ConfigurationService } from '../configuration-service';
-
-export interface IUserApi {
-  createUser(user: User): Observable<User>;
-}
+import RegisterUserResponse from 'src/app/models/response-models/register-user-response';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserHttpService extends BaseHttpService implements IUserApi {
+export class UserHttpService extends BaseHttpService {
   constructor(
     httpClient: HttpClient,
     configuration: ConfigurationService
@@ -20,8 +17,8 @@ export class UserHttpService extends BaseHttpService implements IUserApi {
     super(httpClient, configuration);
   }
 
-  public createUser(user: User): Observable<User> {
-    return this.postResource<User>('user', user);
+  public createUser(user: User): Observable<RegisterUserResponse> {
+    return this.postResource<RegisterUserResponse>('user/create', user);
   }
 
   public getUserById(id: string): Observable<User> {

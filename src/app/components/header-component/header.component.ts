@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,15 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  isLoggedIn: boolean;
+
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
-  isLoggedIn: boolean;
-
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn;
+    this.authService.loggedIn.subscribe((res: boolean) => {
+      this.isLoggedIn = res;
+    });
   }
 
   onMainPage(): void {
@@ -29,5 +33,10 @@ export class HeaderComponent implements OnInit {
 
   onRegister(): void {
     this.router.navigate(['/register']);
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

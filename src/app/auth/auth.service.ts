@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { Observable } from 'rxjs/internal/Observable';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 import SignInResult from '../models/response-models/sign-in-result';
 import { AuthHttpService } from '../services/http-services/auth-http-service';
 import RefreshTokenResponse from '../models/response-models/refresh-token-response';
@@ -20,6 +20,12 @@ export class AuthService {
 
   public get isLoggedIn(): boolean {
     return localStorage.getItem(this.nameofTokenKey) !== null;
+  }
+
+  loggedInSource = new BehaviorSubject<boolean>(this.isLoggedIn);
+  loggedIn: Observable<boolean> = this.loggedInSource.asObservable();
+  changeLoggedInState(res: boolean) {
+    this.loggedInSource.next(res);
   }
 
   public getAuthToken(): string {
@@ -52,10 +58,13 @@ export class AuthService {
     return this.authHttpService.login(userName, password).subscribe(
       (resp: SignInResult) => {
         localStorage.setItem(this.nameofLogin, resp.user.login);
-        localStorage.setItem(this.nameofCompanyId, resp.user.company.id);
+        if (resp.user.company) {
+          localStorage.setItem(this.nameofCompanyId, resp.user.company.id);
+        }
         localStorage.setItem(this.nameofTokenKey, resp.token);
         localStorage.setItem(this.nameofRefreshToken, resp.refreshToken);
         this.loginResult$.next(resp);
+        this.changeLoggedInState(true);
       },
       (e) => {
         this.errorMessage = e;
@@ -70,5 +79,6 @@ export class AuthService {
     localStorage.removeItem(this.nameofRefreshToken);
     localStorage.removeItem(this.nameofCompanyId);
     this.loginResult$.next({});
+    this.changeLoggedInState(false);
   }
 }

@@ -17,4 +17,14 @@
       </li>
     </ul>
   </div>
+  <div
+    *ngIf="isLoggedIn"
+    class="sign-in-and-up"
+  >
+    <ul>
+      <li (click)="onLogout()">
+        Выйти
+      </li>
+    </ul>
+  </div>
 </nav>

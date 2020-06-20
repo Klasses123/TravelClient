@@ -58,9 +58,11 @@ export class RegisterComponent {
     user.password = this.password;
 
     this.userService.createUser(user).subscribe(
-      (u) => {
-        this.authService.login(u.login, this.password);
-        this.router.navigate(['/']);
+      (res) => {
+        if (res.ok) {
+          this.authService.login(this.userName, this.password);
+          this.router.navigate(['/']);
+        }
       }
     )
   }
