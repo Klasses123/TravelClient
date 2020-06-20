@@ -11,7 +11,7 @@ import {
   import { ToastData } from '../components/shared/toast/toast-config';
 import { UserHttpService } from './http-services/user-http-service';
 import { AuthService } from '../auth/auth.service';
-import SignInResult from '../models/request-result-models/sign-in-result';
+import RefreshTokenResponse from '../models/response-models/refresh-token-response';
   
   @Injectable({ providedIn: 'root' })
   export class HttpIntercept implements HttpInterceptor {
@@ -49,28 +49,30 @@ import SignInResult from '../models/request-result-models/sign-in-result';
       return next.handle(request).pipe(
         catchError((errorResponse) => {
           console.log(errorResponse);
-  
+          
           if (errorResponse.status >= 500) {
-            //не знаю точно, что передать в тост message или text
-            this.toast.text = errorResponse.error.Details.Text;
-            this.toastService.show(this.toast);
-            return throwError(errorResponse.error.Details.Text);
+            if (errorResponse.console.error.Details.Text) {
+              this.toast.text = errorResponse.error.Details.Text;
+              this.toastService.show(this.toast);
+              return throwError(errorResponse.error.Details.Text);
+            }
+            return throwError('Неопределенная ошибка сервера!');
           }
-  
+
           if (errorResponse.status === 0) {
             this.toast.text = 'Ошибка соединения с сервером!';
             this.toastService.show(this.toast);
             return throwError('Нет соединения с сервером');
           }
-  
+
           if (errorResponse.status === 401) {
             if (!this.refreshTokenInProgress) {
               this.refreshTokenInProgress = true;
               this.refreshTokenSubject.next(null);
-              return this.userService
-                .refreshToken(this.authService.getRefreshToken())
+              return this.authService
+                .refreshToken()
                 .pipe(
-                  switchMap((refreshTokenResponse: SignInResult) => {
+                  switchMap((refreshTokenResponse: RefreshTokenResponse) => {
                     this.authService.resetToken(refreshTokenResponse);
                     this.refreshTokenInProgress = false;
                     this.refreshTokenSubject.next(refreshTokenResponse.token);
@@ -81,13 +83,13 @@ import SignInResult from '../models/request-result-models/sign-in-result';
               return this.refreshTokenSubject.pipe(
                 filter((result) => result !== null),
                 take(1),
-                switchMap((res) => {
-                  return next.handle(this.injectToken(request));
-                })
+                switchMap(() => 
+                  next.handle(this.injectToken(request))
+                )
               );
             }
           }
-  
+
           return throwError(errorResponse.error.Details.Text);
         })
       );

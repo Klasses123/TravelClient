@@ -36,16 +36,13 @@ export class AuthService {
 
   constructor(private authHttpService: AuthHttpService) {}
 
-  public refreshToken(): Subscription {
-    return this.authHttpService.refreshToken(localStorage.getItem(this.nameofRefreshToken)).subscribe(
-      (resp: RefreshTokenResponse) => {
-        localStorage.setItem(this.nameofTokenKey, resp.token);
-        localStorage.setItem(this.nameofRefreshToken, resp.refreshToken);
-      },
-      (e) => {
-        this.errorMessage = e;
-      }
-    );
+  public resetToken(tokenResponse: RefreshTokenResponse): void {
+    localStorage.setItem(this.nameofRefreshToken, tokenResponse.refreshToken);
+    localStorage.setItem(this.nameofTokenKey, tokenResponse.token);
+  }
+
+  public refreshToken(): Observable<RefreshTokenResponse> {
+    return this.authHttpService.refreshToken(localStorage.getItem(this.nameofRefreshToken));
   }
 
   public login(
