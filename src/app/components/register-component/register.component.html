@@ -1,0 +1,58 @@
+<div>
+  <h1>Регистрация</h1>
+  <form (submit)="register()">
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        [(ngModel)]="email"
+        name="email"
+        type="email"
+        placeholder="youremail@gmail.com"
+        class="form-control"
+      >
+    </div>
+    <div class="form-group">
+      <label>Логин</label>
+      <input 
+        [(ngModel)]="userName"
+        name="login"
+        type="text"
+        placeholder="login"
+        class="form-control"
+      >
+    </div>
+    <div class="form-group">
+      <label>Пароль</label>
+      <input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        placeholder="*******"
+        class="form-control"
+      >
+    </div>
+    <div class="form-group">
+      <label>Повторите пароль</label>
+      <input
+        [(ngModel)]="passRepeat"
+        name="password"
+        type="password"
+        placeholder="*******"
+        class="form-control"
+      >
+    </div>
+    <div calss="form-group" *ngIf="incorrectPassMessage">
+      <small>{{ incorrectPassMessage }}</small>
+    </div>
+    <div class="form-group">
+      <button 
+        class="btn"
+        type="submit"
+        [disabled]="password !== passRepeat"
+      >
+        Зарегистрироваться
+      </button>
+    </div>
+  </form>
+</div>
+  

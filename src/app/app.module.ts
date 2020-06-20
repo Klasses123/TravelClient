@@ -11,13 +11,15 @@ import { LoginComponent } from './components/login-component/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpIntercept } from './services/http-interceptor';
 import { ToastModule } from './components/shared/toast/toast.module';
+import { RegisterComponent } from './components/register-component/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ImgListComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

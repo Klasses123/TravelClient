@@ -51,7 +51,7 @@ export class AuthService {
   ): Subscription {
     return this.authHttpService.login(userName, password).subscribe(
       (resp: SignInResult) => {
-        localStorage.setItem(this.nameofLogin, resp.user.userName);
+        localStorage.setItem(this.nameofLogin, resp.user.login);
         localStorage.setItem(this.nameofCompanyId, resp.user.company.id);
         localStorage.setItem(this.nameofTokenKey, resp.token);
         localStorage.setItem(this.nameofRefreshToken, resp.refreshToken);
