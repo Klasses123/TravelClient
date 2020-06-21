@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpIntercept } from './services/http-interceptor';
 import { ToastModule } from './components/shared/toast/toast.module';
 import { RegisterComponent } from './components/register-component/register.component';
+import { ProfileComponent } from './components/profile-component/profile.component';
+import { CreateCompanyComponent } from './components/create-company/create-company.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { RegisterComponent } from './components/register-component/register.comp
     HeaderComponent,
     ImgListComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    CreateCompanyComponent
   ],
   imports: [
     BrowserModule,

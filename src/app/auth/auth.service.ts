@@ -18,16 +18,19 @@ export class AuthService {
   public loginResult$: Subject<SignInResult> = new Subject<SignInResult>();
   public errorMessage: string;
 
+  constructor(
+    private authHttpService: AuthHttpService
+  ) { }
+
   public get isLoggedIn(): boolean {
     return localStorage.getItem(this.nameofTokenKey) !== null;
   }
-
   loggedInSource = new BehaviorSubject<boolean>(this.isLoggedIn);
   loggedIn: Observable<boolean> = this.loggedInSource.asObservable();
   changeLoggedInState(res: boolean) {
     this.loggedInSource.next(res);
   }
-
+  
   public getAuthToken(): string {
     return localStorage.getItem(this.nameofTokenKey);
   }
@@ -39,8 +42,6 @@ export class AuthService {
   public getUserName(): string {
     return localStorage.getItem(this.nameofLogin);
   }
-
-  constructor(private authHttpService: AuthHttpService) {}
 
   public resetToken(tokenResponse: RefreshTokenResponse): void {
     localStorage.setItem(this.nameofRefreshToken, tokenResponse.refreshToken);

@@ -28,7 +28,7 @@ export class AuthHttpService extends BaseHttpService {
   }
 
   public refreshToken(refreshToken: string): Observable<RefreshTokenResponse> {
-    return this.getResource(`token/refreshToken/${refreshToken}`);
+    return this.getResource(`token/refresh/${refreshToken}`);
   }
 
 }

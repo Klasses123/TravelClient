@@ -18,7 +18,9 @@ export class LoginComponent {
   ) {}
 
   login() {
+    //TODO: поменять на подписку
     this.authService.login(this.userName, this.password);
+
     this.router.navigate(['/']);
   }
 }

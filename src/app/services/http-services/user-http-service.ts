@@ -29,4 +29,7 @@ export class UserHttpService extends BaseHttpService {
     return this.getResource<User>(`user/${id}/withCompany`);
   }
 
+  public getUserByUserName(userName: string): Observable<User> {
+    return this.getResource<User>(`user/getByUserName/${userName}`);
+  }
 }
