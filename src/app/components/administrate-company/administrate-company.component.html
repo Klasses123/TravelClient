@@ -3,3 +3,15 @@
 <h4>{{company.phoneNumber}}</h4>
 <h4>{{company.createdOn}}</h4>
 <h5>{{company.id}}</h5>
+<button
+  (click)="createTravel()"
+  *ngIf="canCreateTravel"
+>
+  Создать путешествие
+</button>
+<button
+  (click)="removeCompany()"
+  *ngIf="isOwner"
+>
+  удалить компанию
+</button>

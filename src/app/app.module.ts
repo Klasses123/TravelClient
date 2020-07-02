@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register-component/register.comp
 import { ProfileComponent } from './components/profile-component/profile.component';
 import { CreateCompanyComponent } from './components/create-company/create-company.component';
 import { AdministrateCompanyComponent } from './components/administrate-company/administrate-company.component';
+import { CreateTravelComponent } from './components/create-travel/create-travel.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AdministrateCompanyComponent } from './components/administrate-company/
     RegisterComponent,
     ProfileComponent,
     CreateCompanyComponent,
-    AdministrateCompanyComponent
+    AdministrateCompanyComponent,
+    CreateTravelComponent
   ],
   imports: [
     BrowserModule,

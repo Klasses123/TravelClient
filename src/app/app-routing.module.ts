@@ -6,6 +6,8 @@ import { RegisterComponent } from './components/register-component/register.comp
 import { ProfileComponent } from './components/profile-component/profile.component';
 import { CreateCompanyComponent } from './components/create-company/create-company.component';
 import { AdministrateCompanyComponent } from './components/administrate-company/administrate-company.component';
+import { CreateTravelComponent } from './components/create-travel/create-travel.component';
+import { CreateTravelGurad } from './auth/create-travel.guard';
 
 const routes: Routes = [
   {
@@ -29,6 +31,11 @@ const routes: Routes = [
   {
     path: 'admin-company',
     component: AdministrateCompanyComponent
+  },
+  {
+    path: 'create-travel',
+    component: CreateTravelComponent,
+    canActivate: [CreateTravelGurad]
   }
 ];
 

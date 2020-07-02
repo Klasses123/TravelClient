@@ -25,4 +25,8 @@ export class CompanyHttpService extends BaseHttpService {
   public getCompany(name: string): Observable<Company> {
     return this.getResource<Company>(`company/getByName/${name}`);
   }
+
+  public deleteCompany(name: string): Observable<boolean> {
+    return this.deleteResource<boolean>(`company/delete/${name}`);
+  }
 }

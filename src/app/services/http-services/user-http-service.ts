@@ -32,4 +32,12 @@ export class UserHttpService extends BaseHttpService {
   public getUserByUserName(userName: string): Observable<User> {
     return this.getResource<User>(`user/getByUserName/${userName}`);
   }
+
+  public canCreateTravel(): Observable<boolean> {
+    return this.getResource<boolean>(`user/canCreateTravel`);
+  }
+
+  public isOwner(): Observable<boolean> {
+    return this.getResource<boolean>(`user/isOwner`);
+  }
 }
