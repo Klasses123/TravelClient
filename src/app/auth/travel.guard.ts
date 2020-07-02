@@ -11,7 +11,7 @@ import { UserHttpService } from '../services/http-services/user-http-service';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateTravelGurad implements CanActivate {
+export class TravelGurad implements CanActivate {
   constructor(
     private userService: UserHttpService
   ) {}

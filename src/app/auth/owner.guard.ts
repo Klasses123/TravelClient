@@ -11,7 +11,7 @@ import { UserHttpService } from '../services/http-services/user-http-service';
 @Injectable({
   providedIn: 'root'
 })
-export class DeleteCompanyGurad implements CanActivate {
+export class OwnerGurad implements CanActivate {
   constructor(
     private userService: UserHttpService
   ) {}

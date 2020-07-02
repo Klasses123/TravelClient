@@ -7,7 +7,7 @@ import { ProfileComponent } from './components/profile-component/profile.compone
 import { CreateCompanyComponent } from './components/create-company/create-company.component';
 import { AdministrateCompanyComponent } from './components/administrate-company/administrate-company.component';
 import { CreateTravelComponent } from './components/create-travel/create-travel.component';
-import { CreateTravelGurad } from './auth/create-travel.guard';
+import { TravelGurad } from './auth/travel.guard';
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: 'create-travel',
     component: CreateTravelComponent,
-    canActivate: [CreateTravelGurad]
+    canActivate: [TravelGurad]
   }
 ];
 
