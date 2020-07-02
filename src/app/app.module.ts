@@ -14,6 +14,7 @@ import { ToastModule } from './components/shared/toast/toast.module';
 import { RegisterComponent } from './components/register-component/register.component';
 import { ProfileComponent } from './components/profile-component/profile.component';
 import { CreateCompanyComponent } from './components/create-company/create-company.component';
+import { AdministrateCompanyComponent } from './components/administrate-company/administrate-company.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CreateCompanyComponent } from './components/create-company/create-compa
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    AdministrateCompanyComponent
   ],
   imports: [
     BrowserModule,

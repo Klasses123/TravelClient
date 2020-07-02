@@ -12,7 +12,7 @@ import RefreshTokenResponse from '../models/response-models/refresh-token-respon
 export class AuthService {
   private readonly nameofTokenKey: string = 'auth_token';
   private readonly nameofLogin: string = 'login';
-  private readonly nameofCompanyId: string = 'company_id';
+  private readonly nameofCompanyName: string = 'company_name';
   private readonly nameofRefreshToken: string = 'refresh_token';
   public redirectUrl: string;
   public loginResult$: Subject<SignInResult> = new Subject<SignInResult>();
@@ -43,6 +43,10 @@ export class AuthService {
     return localStorage.getItem(this.nameofLogin);
   }
 
+  public getCompanyName(): string {
+    return localStorage.getItem(this.nameofCompanyName);
+  }
+
   public resetToken(tokenResponse: RefreshTokenResponse): void {
     localStorage.setItem(this.nameofRefreshToken, tokenResponse.refreshToken);
     localStorage.setItem(this.nameofTokenKey, tokenResponse.token);
@@ -60,7 +64,7 @@ export class AuthService {
       (resp: SignInResult) => {
         localStorage.setItem(this.nameofLogin, resp.user.login);
         if (resp.user.company) {
-          localStorage.setItem(this.nameofCompanyId, resp.user.company.id);
+          localStorage.setItem(this.nameofCompanyName, resp.user.company.name);
         }
         localStorage.setItem(this.nameofTokenKey, resp.token);
         localStorage.setItem(this.nameofRefreshToken, resp.refreshToken);
@@ -78,7 +82,7 @@ export class AuthService {
     localStorage.removeItem(this.nameofTokenKey);
     localStorage.removeItem(this.nameofLogin);
     localStorage.removeItem(this.nameofRefreshToken);
-    localStorage.removeItem(this.nameofCompanyId);
+    localStorage.removeItem(this.nameofCompanyName);
     this.loginResult$.next({});
     this.changeLoggedInState(false);
   }

@@ -21,4 +21,8 @@ export class CompanyHttpService extends BaseHttpService {
   public createCompany(request: CreateCompanyRequest): Observable<Company> {
     return this.postResource<Company>(`company/create`, request);
   }
+
+  public getCompany(name: string): Observable<Company> {
+    return this.getResource<Company>(`company/getByName/${name}`);
+  }
 }

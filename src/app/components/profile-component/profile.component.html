@@ -12,6 +12,14 @@
   Создать компанию
 </button>
 
+<button
+  *ngIf="user.company"
+  (click)="administrateCompany()"
+  class="btn"
+>
+  Управление компанией
+</button>
+
 <button 
   (click)="logout()"
   class="btn"

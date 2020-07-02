@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login-component/login.component';
 import { RegisterComponent } from './components/register-component/register.component';
 import { ProfileComponent } from './components/profile-component/profile.component';
 import { CreateCompanyComponent } from './components/create-company/create-company.component';
+import { AdministrateCompanyComponent } from './components/administrate-company/administrate-company.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'create-company',
     component: CreateCompanyComponent
+  }, 
+  {
+    path: 'admin-company',
+    component: AdministrateCompanyComponent
   }
 ];
 

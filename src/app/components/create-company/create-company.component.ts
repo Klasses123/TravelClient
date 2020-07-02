@@ -3,6 +3,7 @@ import { CompanyHttpService } from 'src/app/services/http-services/company-http-
 import Company from 'src/app/models/company';
 import CreateCompanyRequest from 'src/app/models/request-models/create-company-request';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-company',
@@ -17,7 +18,8 @@ export class CreateCompanyComponent {
 
   constructor(
     private companyService: CompanyHttpService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
   
   onCreate(): void {
@@ -28,7 +30,7 @@ export class CreateCompanyComponent {
     createRequest.ownerName = this.authService.getUserName();
 
     this.companyService.createCompany(createRequest).subscribe((company: Company) => {
-      console.log(company);
+      this.router.navigate(['admin-company']);
     });
   }
 

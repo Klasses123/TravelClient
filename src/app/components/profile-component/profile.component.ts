@@ -11,7 +11,7 @@ import { UserHttpService } from 'src/app/services/http-services/user-http-servic
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   
-  user: User;
+  user: User = new User();
 
   constructor(
     private authService: AuthService,
@@ -19,21 +19,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private userService: UserHttpService
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    this.user = await this.userService.getUserByUserName(
-      this.authService.getUserName()
-    ).toPromise();
+  ngOnInit(): void{
+    this.userService.getUserByUserName(this.authService.getUserName())
+      .subscribe((u) => {
+        this.user = u;
+      });
   }
 
   ngOnDestroy(): void {
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);
   }
 
   createCompany(): void {
     this.router.navigate(['create-company']);
+  }
+
+  administrateCompany(): void {
+    this.router.navigate(['admin-company'])
   }
 }
