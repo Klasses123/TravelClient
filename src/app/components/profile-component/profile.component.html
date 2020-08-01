@@ -1,0 +1,28 @@
+<h4>{{user.login}}</h4>
+<h5>{{user.firstName}} {{user.lastName}}</h5>
+
+<p>{{user.email}}</p>
+<p>{{user.id}}</p>
+
+<button
+  *ngIf="!user.company"
+  (click)="createCompany()"
+  class="btn"
+>
+  Создать компанию
+</button>
+
+<button
+  *ngIf="user.company"
+  (click)="administrateCompany()"
+  class="btn"
+>
+  Управление компанией
+</button>
+
+<button 
+  (click)="logout()"
+  class="btn"
+>
+  Выйти
+</button>

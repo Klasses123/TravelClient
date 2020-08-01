@@ -1,11 +1,30 @@
 <nav>
   <ul>
-    <li 
-    ngClass="jj"
-      *ngFor="let r of references"
-      (click)="r.onClick()"
-    >
-      {{r.title}}
+    <li (click)="onMainPage()">
+      Главная
     </li>
   </ul>
+  <div 
+    class="sign-in-and-up"
+    *ngIf="!isLoggedIn"
+  >
+    <ul>
+      <li (click)="onLogin()">
+        Вход
+      </li>
+      <li (click)="onRegister()">
+        Регистрация
+      </li>
+    </ul>
+  </div>
+  <div
+    *ngIf="isLoggedIn"
+    class="sign-in-and-up"
+  >
+    <ul>
+      <li (click)="onProfile()">
+        Профиль
+      </li>
+    </ul>
+  </div>
 </nav>

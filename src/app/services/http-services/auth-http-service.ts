@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseHttpService } from './base-http-service';
-import SignInResult from 'src/app/models/request-result-models/sign-in-result';
+import SignInResult from 'src/app/models/response-models/sign-in-result';
 import { ConfigurationService } from '../configuration-service';
+import RefreshTokenResponse from 'src/app/models/response-models/refresh-token-response';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class AuthHttpService extends BaseHttpService {
     });
   }
 
-  public refreshToken(refreshToken: string) {
-    return this.getResource(`token/refreshToken/${refreshToken}`);
+  public refreshToken(refreshToken: string): Observable<RefreshTokenResponse> {
+    return this.getResource(`token/refresh/${refreshToken}`);
   }
 
 }
