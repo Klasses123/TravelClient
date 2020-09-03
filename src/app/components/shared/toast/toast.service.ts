@@ -17,7 +17,7 @@ export class ToastService {
   show(data: ToastData): ToastRef {
     let positionStrategy: GlobalPositionStrategy;
     if (!data.position) {
-      positionStrategy = this.getRightTopPositionStrategy(
+      positionStrategy = this.getRightBottomPositionStrategy(
         data.margin ? data.margin : 10
       );
     } else {

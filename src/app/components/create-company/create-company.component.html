@@ -1,0 +1,44 @@
+<div>
+  <h4>Создание компании</h4>
+
+  <form (submit)="onCreate()">
+    <div class="form-group">
+      <label>Название компании</label>
+      <input
+        [(ngModel)]="companyName"
+        name="companyName"
+        type="text"
+        placeholder="название компании"
+        class="form-control"
+      >
+    </div>
+    <div class="form-group">
+      <label>Email компании</label>
+      <input
+        [(ngModel)]="companyEmail"
+        name="companyEmail"
+        type="email"
+        placeholder="company@cmp.ru"
+        class="form-control"
+      >
+    </div>
+    <div class="form-group">
+      <label>Номер телефона</label>
+      <input
+        [(ngModel)]="companyPhoneNumber"
+        name="companyPhoneNumber"
+        type="tel"
+        placeholder="+79000000000"
+        class="form-control"
+      >
+    </div>
+    <div class="form-control">
+      <button
+        class="btn"
+        type="submit"
+      >
+        Создать
+      </button>
+    </div>
+  </form>
+</div>

@@ -3,17 +3,13 @@ import User from '../../models/user';
 import { HttpClient } from '@angular/common/http';
 import { BaseHttpService } from './base-http-service';
 import { Observable } from 'rxjs';
-import SignInResult from 'src/app/models/request-result-models/sign-in-result';
 import { ConfigurationService } from '../configuration-service';
-
-export interface IUserApi {
-  createUser(user: User): Observable<User>;
-}
+import RegisterUserResponse from 'src/app/models/response-models/register-user-response';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserHttpService extends BaseHttpService implements IUserApi {
+export class UserHttpService extends BaseHttpService {
   constructor(
     httpClient: HttpClient,
     configuration: ConfigurationService
@@ -21,8 +17,8 @@ export class UserHttpService extends BaseHttpService implements IUserApi {
     super(httpClient, configuration);
   }
 
-  public createUser(user: User): Observable<User> {
-    return this.postResource<User>('user', user);
+  public createUser(user: User): Observable<RegisterUserResponse> {
+    return this.postResource<RegisterUserResponse>('user/create', user);
   }
 
   public getUserById(id: string): Observable<User> {
@@ -33,8 +29,15 @@ export class UserHttpService extends BaseHttpService implements IUserApi {
     return this.getResource<User>(`user/${id}/withCompany`);
   }
 
-  //TODO: переделать
-  public refreshToken(refreshToken: string): Observable<SignInResult> {
-    return this.getResource<SignInResult>(`user/refreshToken/${refreshToken}`);
+  public getUserByUserName(userName: string): Observable<User> {
+    return this.getResource<User>(`user/getByUserName/${userName}`);
+  }
+
+  public canCreateTravel(): Observable<boolean> {
+    return this.getResource<boolean>(`user/canCreateTravel`);
+  }
+
+  public isOwner(): Observable<boolean> {
+    return this.getResource<boolean>(`user/isOwner`);
   }
 }

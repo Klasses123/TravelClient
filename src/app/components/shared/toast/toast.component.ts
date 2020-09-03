@@ -3,11 +3,11 @@ import { AnimationEvent } from '@angular/animations';
 import { ToastData } from './toast-config';
 import { ToastRef } from './toast-ref';
 import { toastAnimations, ToastAnimationState } from './toast-animation';
-import { ConfigurationService } from 'src/app/configuration.service';
+import { ConfigurationService } from 'src/app/services/configuration-service';
 
 @Component({
   selector: 'app-toast',
-  templateUrl: './toast.component.html',
+  templateUrl: 'toast.component.html',
   styleUrls: ['toast.component.scss'],
   animations: [toastAnimations.fadeToast]
 })
